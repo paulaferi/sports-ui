@@ -1,4 +1,3 @@
-import { useMemo, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { teamsMock, playersMock } from "../../mocks/data";
 import { Body } from "../../components/Body/Body";
@@ -8,18 +7,8 @@ export function TeamDetails() {
   const { id } = useParams();
   const teamId = Number(id);
 
-  const team = useMemo(() => teamsMock.find((t) => t.id === teamId), [teamId]);
-  const initialPlayers = useMemo(
-    () => playersMock.filter((p) => p.teamId === teamId),
-    [teamId],
-  );
-
-  const [players, setPlayers] = useState<Player[]>(initialPlayers);
-
-  useEffect(() => {
-    // aquí iría el conteo dinámico o futuros fetch a API
-    document.title = `${team?.name ?? "Team"} — ${players.length} players`;
-  }, [players, team]);
+  const team: Team | undefined = teamsMock.find((t) => t.id === teamId);
+  const players: Player[] = playersMock.filter((p) => p.teamId === teamId);
 
   if (!team) return <p>Team not found.</p>;
 

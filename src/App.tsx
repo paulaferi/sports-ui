@@ -1,9 +1,9 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Menu } from "./components/Menu/Menu";
 import { Footer } from "./components/Footer/Footer";
-import "./styles/layout.css";
 import { TeamList } from "./pages/TeamList/TeamList";
 import { TeamDetails } from "./pages/TeamDetails/TeamDetails";
+import "./styles/layout.css";
 
 export default function App() {
   return (
