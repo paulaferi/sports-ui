@@ -13,7 +13,7 @@ export default function App() {
         <main className="main">
           <Routes>
             <Route path="/" element={<TeamList />} />
-            <Route path="/teams/:id" element={<TeamDetails />} />
+            <Route path="/team/:id" element={<TeamDetails />} />
           </Routes>
         </main>
         <Footer />
