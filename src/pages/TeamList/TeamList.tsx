@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
+import { teamsMock } from "../../mocks/data";
 import type { Team } from "../../types";
 import "./TeamList.css";
 
-// Datos temporales estáticos:
-const teams: Team[] = [
-  { id: 1, name: "Lions FC", city: "Maribor", players: [] },
-  { id: 2, name: "Eagles FC", city: "Ljubljana", players: [] },
-];
-
 export function TeamList() {
+  const teams: Team[] = teamsMock;
+
   return (
     <section className="team-list">
       <h2>Teams</h2>

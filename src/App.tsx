@@ -1,24 +1,20 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Menu } from "./components/Menu/Menu";
 import { Footer } from "./components/Footer/Footer";
-import { Body } from "./components/Body/Body";
-import type { Team, Player } from "./types";
 import "./styles/layout.css";
-
-const mockTeam: Team = { id: 1, name: "Lions FC", city: "Maribor" };
-
-const mockPlayers: Player[] = [
-  { id: 1, name: "Ana", position: "FW", number: 9 },
-  { id: 2, name: "Sara", position: "MF", number: 8 },
-];
+import { TeamList } from "./pages/TeamList/TeamList";
+import { TeamDetails } from "./pages/TeamDetails/TeamDetails";
 
 export default function App() {
   return (
     <BrowserRouter>
       <div className="app">
         <Menu />
-        <main>
-          <Body team={mockTeam} players={mockPlayers} />
+        <main className="main">
+          <Routes>
+            <Route path="/" element={<TeamList />} />
+            <Route path="/teams/:id" element={<TeamDetails />} />
+          </Routes>
         </main>
         <Footer />
       </div>
