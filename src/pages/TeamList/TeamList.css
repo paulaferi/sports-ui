@@ -1,0 +1,18 @@
+.team-list {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.team-list__items {
+  list-style: none;
+  padding: 0;
+}
+.team-list__item {
+  padding: 0.5rem 0;
+}
+.team-list__item a {
+  color: #0a66c2;
+  text-decoration: none;
+}
+.team-list__item a:hover {
+  text-decoration: underline;
+}

@@ -1,29 +1,27 @@
-import { useState } from "react";
-import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { Menu } from "./components/Menu/Menu";
+import { Footer } from "./components/Footer/Footer";
+import { Body } from "./components/Body/Body";
+import type { Team, Player } from "./types";
+import "./styles/layout.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+const mockTeam: Team = { id: 1, name: "Lions FC", city: "Maribor" };
 
+const mockPlayers: Player[] = [
+  { id: 1, name: "Ana", position: "FW", number: 9 },
+  { id: 2, name: "Sara", position: "MF", number: 8 },
+];
+
+export default function App() {
   return (
-    <div className="App">
-      <header>
-        <h1>Sports Teams</h1>
-        <nav>
-          <a href="/">Home</a>
-        </nav>
-      </header>
-
-      <main>
-        <p>Welcome! Manage teams and players here.</p>
-        <button onClick={() => setCount((c) => c + 1)}>Increase counter</button>
-        <p>Counter: {count}</p>
-      </main>
-
-      <footer>
-        <small>© {new Date().getFullYear()} Sports UI</small>
-      </footer>
-    </div>
+    <BrowserRouter>
+      <div className="app">
+        <Menu />
+        <main>
+          <Body team={mockTeam} players={mockPlayers} />
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
-
-export default App;
