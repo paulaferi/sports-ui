@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { teamsMock, playersMock } from "../../mocks/data";
 import { Body } from "../../components/Body/Body";
@@ -20,23 +20,26 @@ export function TeamDetails() {
 
   const [players, setPlayers] = useState<Player[]>(initialPlayers);
 
-  //ELiminar
-  function addMockPlayer() {
-    const nextId = Math.max(0, ...players.map((p) => p.id)) + 1;
-    setPlayers((prev) => [
-      ...prev,
-      { id: nextId, teamId, name: `New ${nextId}`, position: "MF", number: 20 },
-    ]);
-  }
-  //Hatsa aqui
+  useEffect(() => {
+    if (team) document.title = `${team.name} — ${players.length} players`;
+  }, [team, players.length]);
+
   if (!team) return <p>Team not found.</p>;
 
-  return (
-    <>
-      <button onClick={addMockPlayer} style={{ margin: "1rem" }}>
-        Add player (test)
-      </button>
-      <Body team={team} players={players} />
-    </>
-  );
+  function addPlayer(newPlayer: Omit<Player, "id">) {
+    const nextId = Math.max(0, ...players.map((p) => p.id)) + 1;
+    setPlayers((prev) => [...prev, { ...newPlayer, id: nextId }]);
+  }
+
+  function removePlayer(id: number) {
+    setPlayers((prev) => prev.filter((p) => p.id !== id));
+  }
+
+  function updatePlayer(id: number, changes: Partial<Player>) {
+    setPlayers((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, ...changes } : p)),
+    );
+  }
+
+  return <Body team={team} players={players} />;
 }
