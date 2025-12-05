@@ -17,4 +17,31 @@ main {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
+}
+.menu {
+  position: sticky;
+  top: 0;
+  background: #111;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  z-index: 10;
+}
+.menu__nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu__brand {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer {
+  background: #f3f3f3;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
 }
