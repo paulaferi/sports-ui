@@ -22,7 +22,6 @@ export function isTeamComplete(count: number): boolean {
   return count >= MIN_PLAYERS;
 }
 
-// Mensajes en inglés para UI:
 export const UI_MESSAGES = {
   teamComplete: (count: number) => `Squad complete: ${count} players.`,
   teamIncomplete: (count: number) =>
