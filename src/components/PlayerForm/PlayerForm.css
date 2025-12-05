@@ -1,0 +1,87 @@
+.player-form {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 1rem;
+  background: #fff;
+  max-width: 520px;
+}
+
+.player-form__title {
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.player-form__row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.player-form__label {
+  color: #374151;
+}
+
+.player-form__input,
+.player-form__select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+}
+
+.team-details__sidebar {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.player-form__input:focus,
+.player-form__select:focus {
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.15);
+}
+
+.player-form__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.player-form__submit {
+  background: #0a66c2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+}
+
+.player-form__submit:hover {
+  background: #084f96;
+}
+
+.player-form__error {
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #7f1d1d;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .player-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .player-form__label {
+    margin-bottom: 0.25rem;
+  }
+}

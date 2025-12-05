@@ -1,8 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { teamsMock, playersMock } from "../../mocks/data";
 import { Body } from "../../components/Body/Body";
-import type { Team, Player } from "../../types";
+import { PlayerForm } from "../../components/PlayerForm/PlayerForm";
+import type { Team, Player, PlayerPosition } from "../../types";
+import "./TeamDetails.css";
 
 export function TeamDetails() {
   const { id } = useParams();
@@ -13,7 +15,7 @@ export function TeamDetails() {
     [teamId],
   );
 
-  const initialPlayers = useMemo(
+  const initialPlayers: Player[] = useMemo(
     () => playersMock.filter((p) => p.teamId === teamId),
     [teamId],
   );
@@ -26,20 +28,44 @@ export function TeamDetails() {
 
   if (!team) return <p>Team not found.</p>;
 
-  function addPlayer(newPlayer: Omit<Player, "id">) {
+  // Handler de envío: añade el jugador al estado local
+  function handleAddPlayer(values: {
+    name: string;
+    position: PlayerPosition;
+    number: number;
+  }) {
     const nextId = Math.max(0, ...players.map((p) => p.id)) + 1;
-    setPlayers((prev) => [...prev, { ...newPlayer, id: nextId }]);
+
+    // Normalización básica
+    const name = values.name.trim();
+    const position = values.position;
+    const number = Number(values.number);
+
+    if (!name) return; // podrías mostrar un error en el formulario
+    if (number <= 0) return;
+
+    const newPlayer: Player = {
+      id: nextId,
+      teamId,
+      name,
+      position,
+      number,
+    };
+
+    setPlayers((prev) => [...prev, newPlayer]); // actualiza el estado
   }
 
-  function removePlayer(id: number) {
-    setPlayers((prev) => prev.filter((p) => p.id !== id));
-  }
-
-  function updatePlayer(id: number, changes: Partial<Player>) {
-    setPlayers((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, ...changes } : p)),
-    );
-  }
-
-  return <Body team={team} players={players} />;
+  return (
+    <section className="team-details">
+      <div className="team-details__main">
+        <Body team={team} players={players} />
+      </div>
+      <aside className="team-details__sidebar">
+        <PlayerForm
+          onSubmit={handleAddPlayer}
+          defaultNumber={players.length + 1}
+        />
+      </aside>
+    </section>
+  );
 }

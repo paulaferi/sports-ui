@@ -1,0 +1,22 @@
+.team-details {
+  display: grid;
+  grid-template-columns: 1fr 28%; /* contenido principal + sidebar */
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.team-details__main {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.team-details__sidebar {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+}
