@@ -1,0 +1,75 @@
+.team-form {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 1rem;
+  background: #fff;
+  max-width: 520px;
+}
+
+.team-form__title {
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.team-form__row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.team-form__label {
+  color: #374151;
+}
+
+.team-form__input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+}
+
+.team-form__input:focus {
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.15);
+}
+
+.team-form__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.team-form__submit {
+  background: #0a66c2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+}
+
+.team-form__submit:hover {
+  background: #084f96;
+}
+
+.team-form__error {
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #7f1d1d;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .team-form__row {
+    grid-template-columns: 1fr;
+  }
+  .team-form__label {
+    margin-bottom: 0.25rem;
+  }
+}

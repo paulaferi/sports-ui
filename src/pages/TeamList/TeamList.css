@@ -1,7 +1,26 @@
-.team-list {
+/* src/pages/TeamList/TeamList.css */
+.team-list.layout {
+  display: grid;
+  grid-template-columns: 1fr 28%;
+  gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 1rem;
 }
+
+.layout__main {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.layout__sidebar {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
 .team-list__items {
   list-style: none;
   padding: 0;
@@ -16,4 +35,10 @@
 }
 .team-list__link:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 840px) {
+  .team-list.layout {
+    grid-template-columns: 1fr;
+  }
 }
