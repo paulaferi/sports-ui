@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { type Team, type Player, MIN_PLAYERS } from "../../types";
 import { PlayerCard } from "../Player/PlayerCard";
 import { Warning } from "../Warning/Warning";
@@ -5,7 +6,11 @@ import { Info } from "../Info/Info";
 import "./Body.css";
 
 export function Body({ team, players }: { team: Team; players: Player[] }) {
-  const count = players.length;
+  const [count, setCount] = useState<number>(players.length);
+
+  useEffect(() => {
+    setCount(players.length);
+  }, [players]);
 
   return (
     <section className="body">
