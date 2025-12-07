@@ -1,0 +1,16 @@
+{
+  "teams": [
+    { "id": 1, "name": "Lions FC", "city": "Maribor" },
+    { "id": 2, "name": "Eagles FC", "city": "Ljubljana" },
+    { "id": 3, "name": "Bears FC", "city": "Celje" }
+  ],
+  "players": [
+    { "id": 1, "teamId": 1, "name": "Ana", "position": "FW", "number": 9 },
+    { "id": 2, "teamId": 1, "name": "Sara", "position": "MF", "number": 8 },
+    { "id": 3, "teamId": 1, "name": "Nika", "position": "DF", "number": 4 },
+    { "id": 4, "teamId": 2, "name": "Eva", "position": "GK", "number": 1 },
+    { "id": 5, "teamId": 2, "name": "Maja", "position": "FW", "number": 10 },
+    { "id": 6, "teamId": 3, "name": "Tina", "position": "MF", "number": 7 },
+    { "id": 7, "teamId": 3, "name": "Kaja", "position": "DF", "number": 5 }
+  ]
+}
