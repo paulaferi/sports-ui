@@ -77,6 +77,13 @@
       "name": "Test1",
       "position": "FW",
       "number": 13
+    },
+    {
+      "id": "fccb",
+      "teamId": "7d2b",
+      "name": "Test",
+      "position": "MF",
+      "number": 1
     }
   ]
 }

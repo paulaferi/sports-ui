@@ -59,7 +59,7 @@ export function TeamDetails() {
   }) {
     try {
       const created = await createPlayer({
-        teamId,
+        teamId: teamId,
         name: values.name.trim(),
         position: values.position,
         number: values.number,
