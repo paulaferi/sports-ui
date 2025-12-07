@@ -1,22 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { teamsMock } from "../../mocks/data";
 import type { Team } from "../../types";
-import { TeamForm } from "../../components/TeamForm/TeamForm";
+import { getTeams, createTeam } from "../../api/teams";
 import "./TeamList.css";
+import { TeamForm } from "../../components/TeamForm/TeamForm";
 
 export function TeamList() {
-  const [teams, setTeams] = useState<Team[]>(teamsMock);
+  const [teams, setTeams] = useState<Team[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleAddTeam(values: { name: string; city: string }) {
-    const nextId = Math.max(0, ...teams.map((t) => t.id)) + 1;
-    const newTeam: Team = {
-      id: nextId,
-      name: values.name.trim(),
-      city: values.city.trim(),
-    };
-    setTeams((prev) => [...prev, newTeam]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getTeams();
+        setTeams(data);
+      } catch (err) {
+        setError("Failed to load teams");
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  async function handleAddTeam(values: { name: string; city: string }) {
+    try {
+      const created = await createTeam({
+        name: values.name,
+        city: values.city,
+      });
+      setTeams((prev) => [...prev, created]);
+    } catch {
+      setError("Failed to create team");
+    }
   }
+
+  if (loading) return <p>Loading teams...</p>;
+  if (error) return <p role="alert">{error}</p>;
 
   return (
     <section className="team-list layout">
