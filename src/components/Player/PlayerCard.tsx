@@ -1,16 +1,43 @@
 import type { Player } from "../../types";
 import "./PlayerCard.css";
 
-export function PlayerCard({ player }: { player: Player }) {
+export function PlayerCard({
+  player,
+  onDelete,
+}: {
+  player: Player;
+  onDelete?: (id: string | number) => void;
+}) {
   const posClass = `player-card--${player.position.toLowerCase()}`;
+
+  function handleDelete(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (window.confirm(`¿Estás seguro de eliminar a ${player.name}?`)) {
+      onDelete?.(player.id);
+    }
+  }
 
   return (
     <article className={`player-card ${posClass}`}>
+      {onDelete && (
+        <button
+          className="player-card__delete"
+          onClick={handleDelete}
+          aria-label={`Eliminar a ${player.name}`}
+          title="Eliminar jugador"
+        >
+          ×
+        </button>
+      )}
+
       <header className="player-card__header">
         <div className="player-card__avatar">{getInitials(player.name)}</div>
-        <div className="player-card__info"></div>
-        <span className="player-card__number">#{player.number}</span>
-        <h4 className="player-card__name">{player.name}</h4>
+        <div className="player-card__info">
+          <span className="player-card__number">#{player.number}</span>
+          <h4 className="player-card__name">{player.name}</h4>
+        </div>
       </header>
 
       <div className="player-card__meta">

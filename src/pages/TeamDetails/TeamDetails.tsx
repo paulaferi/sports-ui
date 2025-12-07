@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import type { Team, Player, PlayerPosition } from "../../types";
 import { getTeamById } from "../../api/teams";
-import { getPlayersByTeam, createPlayer } from "../../api/players";
+import {
+  getPlayersByTeam,
+  createPlayer,
+  deletePlayer,
+} from "../../api/players";
 import { Body } from "../../components/Body/Body";
 import { PlayerForm } from "../../components/PlayerForm/PlayerForm";
 import "./TeamDetails.css";
@@ -52,12 +56,22 @@ export function TeamDetails() {
     number: number;
   }) {
     const created = await createPlayer({
-      teamId, // usa el mismo tipo que el id del equipo (string)
+      teamId,
       name: values.name.trim(),
       position: values.position,
       number: values.number,
     });
     setPlayers((prev) => [...prev, created]);
+  }
+
+  async function handleDeletePlayer(playerId: string | number) {
+    try {
+      await deletePlayer(playerId);
+      setPlayers((prev) => prev.filter((p) => p.id !== playerId));
+    } catch (error) {
+      console.error("Error deleting player:", error);
+      alert("No se pudo eliminar el jugador. Inténtalo de nuevo.");
+    }
   }
 
   if (loading) return <p>Loading team...</p>;
@@ -67,7 +81,11 @@ export function TeamDetails() {
       {team ? (
         <>
           <div className="team-details__main">
-            <Body team={team} players={players} />
+            <Body
+              team={team}
+              players={players}
+              onDeletePlayer={handleDeletePlayer}
+            />
           </div>
           <aside className="team-details__sidebar">
             <PlayerForm

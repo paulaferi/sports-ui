@@ -5,7 +5,15 @@ import { Warning } from "../Warning/Warning";
 import { Info } from "../Info/Info";
 import "./Body.css";
 
-export function Body({ team, players }: { team: Team; players: Player[] }) {
+export function Body({
+  team,
+  players,
+  onDeletePlayer,
+}: {
+  team: Team;
+  players: Player[];
+  onDeletePlayer?: (id: string | number) => void;
+}) {
   const [count, setCount] = useState<number>(players.length);
 
   useEffect(() => {
@@ -21,7 +29,7 @@ export function Body({ team, players }: { team: Team; players: Player[] }) {
 
       <div className="body__players">
         {players.map((p) => (
-          <PlayerCard key={p.id} player={p} />
+          <PlayerCard key={p.id} player={p} onDelete={onDeletePlayer} />
         ))}
       </div>
     </section>
