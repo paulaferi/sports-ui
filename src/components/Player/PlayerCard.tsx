@@ -7,6 +7,8 @@ export function PlayerCard({ player }: { player: Player }) {
   return (
     <article className={`player-card ${posClass}`}>
       <header className="player-card__header">
+        <div className="player-card__avatar">{getInitials(player.name)}</div>
+        <div className="player-card__info"></div>
         <span className="player-card__number">#{player.number}</span>
         <h4 className="player-card__name">{player.name}</h4>
       </header>
@@ -16,4 +18,11 @@ export function PlayerCard({ player }: { player: Player }) {
       </div>
     </article>
   );
+}
+
+function getInitials(name: string) {
+  const parts = name.trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const second = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + second).toUpperCase();
 }
