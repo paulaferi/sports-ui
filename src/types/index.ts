@@ -1,7 +1,6 @@
 export type PlayerPosition = "GK" | "DF" | "MF" | "FW";
 
 export type Team = { id: string | number; name: string; city: string };
-
 export type Player = {
   id: string | number;
   teamId: string | number;
@@ -23,7 +22,7 @@ export const UI_MESSAGES = {
 };
 
 // Crear jugador desde formulario (sin id, con teamId en REST):
-export type NewPlayer = Omit<Player, "id"> & { teamId: number };
+export type NewPlayer = Omit<Player, "id"> & { teamId: string | number };
 
 // Crear equipo desde formulario (sin id, sin players):
 export type NewTeam = Omit<Team, "id" | "players">;

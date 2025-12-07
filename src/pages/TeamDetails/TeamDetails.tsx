@@ -8,40 +8,34 @@ import { PlayerForm } from "../../components/PlayerForm/PlayerForm";
 import "./TeamDetails.css";
 
 export function TeamDetails() {
-  const { id } = useParams();
+  const { id } = useParams(); // id string
   const teamId = id!;
 
   const [team, setTeam] = useState<Team | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let mounted = true;
     setLoading(true);
-    setError(null);
 
     (async () => {
       try {
-        const teamData = await getTeamById(teamId);
+        const t = await getTeamById(teamId);
         if (!mounted) return;
-        setTeam(teamData);
+        setTeam(t);
       } catch {
         if (!mounted) return;
-        setError("Team not found");
         setTeam(null);
+        setPlayers([]);
         setLoading(false);
         return;
       }
 
       try {
-        const playersData = await getPlayersByTeam(teamId);
+        const ps = await getPlayersByTeam(teamId);
         if (!mounted) return;
-        setPlayers(playersData);
-        document.title = `${teamData.name} — ${playersData.length} players`;
-      } catch {
-        if (!mounted) return;
-        setPlayers([]);
+        setPlayers(ps);
       } finally {
         if (mounted) setLoading(false);
       }
@@ -57,17 +51,13 @@ export function TeamDetails() {
     position: PlayerPosition;
     number: number;
   }) {
-    try {
-      const created = await createPlayer({
-        teamId,
-        name: values.name.trim(),
-        position: values.position,
-        number: values.number,
-      });
-      setPlayers((prev) => [...prev, created]);
-    } catch {
-      console.warn("Failed to create player");
-    }
+    const created = await createPlayer({
+      teamId, // usa el mismo tipo que el id del equipo (string)
+      name: values.name.trim(),
+      position: values.position,
+      number: values.number,
+    });
+    setPlayers((prev) => [...prev, created]);
   }
 
   if (loading) return <p>Loading team...</p>;
