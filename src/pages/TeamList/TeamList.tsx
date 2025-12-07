@@ -42,15 +42,25 @@ export function TeamList() {
     <section className="team-list layout">
       <div className="layout__main">
         <h2>Teams</h2>
-        <ul className="team-list__items">
-          {teams.map((t) => (
-            <li key={t.id} className="team-list__item">
-              <Link to={`/team/${t.id}`} className="team-list__link">
-                {t.name} — {t.city}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {teams.length === 0 ? (
+          <div className="team-list__empty">
+            No teams yet. Create your first team!
+          </div>
+        ) : (
+          <ul className="team-list__items">
+            {teams.map((t) => (
+              <li key={t.id} className="team-list__item">
+                <Link to={`/team/${t.id}`} className="team-list__link">
+                  <div className="team-list__info">
+                    <span className="team-list__name">{t.name}</span>
+                    <span className="team-list__city">{t.city}</span>
+                  </div>
+                  <span className="team-list__arrow">→</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <aside className="layout__sidebar">
         <TeamForm onSubmit={handleAddTeam} />

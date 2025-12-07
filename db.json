@@ -2,42 +2,42 @@
   "teams": [
     {
       "id": "1",
-      "name": "NK Maribor",
+      "name": "NK Maribor (M)",
       "city": "Maribor"
     },
     {
       "id": "2",
-      "name": "NK Olimpija Ljubljana",
+      "name": "NK Olimpija Ljubljana (M)",
       "city": "Ljubljana"
     },
     {
       "id": "3",
-      "name": "NK Celje",
+      "name": "NK Celje (M)",
       "city": "Celje"
     },
     {
       "id": "4",
-      "name": "Real Valladolid CF",
+      "name": "Real Valladolid CF (M)",
       "city": "Valladolid"
     },
     {
       "id": "5",
-      "name": "FC Barcelona (Masculino)",
+      "name": "FC Barcelona (M)",
       "city": "Barcelona"
     },
     {
       "id": "6",
-      "name": "FC Barcelona Femení",
+      "name": "FC Barcelona (W)",
       "city": "Barcelona"
     },
     {
       "id": "7",
-      "name": "Real Madrid CF",
+      "name": "Real Madrid CF (M)",
       "city": "Madrid"
     },
     {
       "id": "8",
-      "name": "Real Madrid Femenino",
+      "name": "Real Madrid (W)",
       "city": "Madrid"
     }
   ],
