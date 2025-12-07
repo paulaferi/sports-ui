@@ -1,23 +1,20 @@
-/* Contenedor principal */
 .player-card {
-  border: 1px solid #8c54cc; /* borde morado suave */
+  border: 1px solid #8c54cc;
   border-radius: 10px;
   padding: 0.75rem;
-  background: #ffffff; /* blanco */
-  box-shadow: 0 1px 2px rgba(84, 38, 204, 0.15); /* sombra morada */
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(84, 38, 204, 0.15);
   transition:
     transform 0.12s ease,
     box-shadow 0.12s ease;
   position: relative;
 }
 
-/* Efecto hover para desktop */
 .player-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(84, 38, 204, 0.25); /* sombra morada más intensa */
+  box-shadow: 0 4px 10px rgba(84, 38, 204, 0.25);
 }
 
-/* Cabecera: número + nombre */
 .player-card__header {
   display: flex;
   align-items: center;
@@ -29,8 +26,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #7f3fff; /* morado brillante */
-  color: #ffffff; /* blanco */
+  background: #7f3fff;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +45,7 @@
 .player-card__number {
   display: inline-block;
   font-weight: 700;
-  color: #1a1a1a; /* negro/gris muy oscuro */
+  color: #1a1a1a;
   font-size: 0.85rem;
 }
 
@@ -56,36 +53,33 @@
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
-  color: #1a1a1a; /* negro/gris muy oscuro */
+  color: #1a1a1a;
 }
 
-/*Posiciones*/
-/* GK - Azul celeste */
 .player-card--gk .player-card__badge {
   background: #e0f7ff;
   color: #2e1a8c;
   border-color: #4bcffa;
 }
-/* DF - Morado suave */
+
 .player-card--df .player-card__badge {
   background: #f3ecff;
   color: #2e1a8c;
   border-color: #8c54cc;
 }
-/* MF - Amarillo cálido */
+
 .player-card--mf .player-card__badge {
   background: #fff9e5;
   color: #1a1a1a;
   border-color: #ffd93d;
 }
-/* FW - Rojo-anaranjado */
+
 .player-card--fw .player-card__badge {
   background: #ffe8e8;
   color: #1a1a1a;
   border-color: #ff6b6b;
 }
 
-/* Metadatos: posición como badge */
 .player-card__meta {
   display: flex;
   align-items: center;
@@ -96,13 +90,12 @@
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.25rem 0.5rem;
-  border-radius: 999px; /* pill */
-  background: #e8dfff; /* fondo morado claro */
-  color: #2e1a8c; /* morado oscuro */
-  border: 1px solid #8c54cc; /* morado suave */
+  border-radius: 999px;
+  background: #e8dfff;
+  color: #2e1a8c;
+  border: 1px solid #8c54cc;
 }
 
-/* Responsivo: ajusta padding y tipografías en pantallas pequeñas */
 @media (max-width: 640px) {
   .player-card {
     padding: 0.5rem;
@@ -117,7 +110,6 @@
   }
 }
 
-/* Botón eliminar */
 .player-card__delete {
   position: absolute;
   top: 0.5rem;

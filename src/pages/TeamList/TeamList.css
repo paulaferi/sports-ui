@@ -149,7 +149,6 @@
   opacity: 0.5;
 }
 
-/* Responsive */
 @media (max-width: 840px) {
   .team-list.layout {
     grid-template-columns: 1fr;
@@ -188,7 +187,6 @@
   }
 }
 
-/* Animación de entrada */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -229,7 +227,6 @@
   animation-delay: 0.4s;
 }
 
-/* Botón eliminar equipo */
 .team-list__delete {
   position: absolute;
   top: 0.75rem;
@@ -268,5 +265,3 @@
 .team-list__delete:active {
   transform: scale(1);
 }
-
-/* Ya no necesitamos ajustar el padding del link */

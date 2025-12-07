@@ -39,7 +39,6 @@
   letter-spacing: 0.2px;
 }
 
-/* contenedor para otros controles del menú */
 .menu__actions {
   display: flex;
   align-items: center;
@@ -60,11 +59,11 @@
 
 .menu-nav ul li {
   cursor: pointer;
-  color: #ffd93d; /* Acento amarillo */
+  color: #ffd93d;
   font-weight: 600;
   transition: color 0.3s;
 }
 
 .menu-nav ul li:hover {
-  color: #7f3fff; /* Morado brillante */
+  color: #7f3fff;
 }

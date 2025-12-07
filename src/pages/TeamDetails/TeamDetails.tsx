@@ -13,7 +13,7 @@ import { TeamStats } from "../../components/TeamStats/TeamStats";
 import "./TeamDetails.css";
 
 export function TeamDetails() {
-  const { id } = useParams(); // id string
+  const { id } = useParams();
   const teamId = id!;
 
   const [team, setTeam] = useState<Team | null>(null);

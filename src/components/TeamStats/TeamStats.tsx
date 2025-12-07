@@ -9,10 +9,10 @@ type PositionStats = {
 };
 
 const POSITION_COLORS = {
-  GK: "#4BCFFA", // Azul celeste
-  DF: "#8C54CC", // Morado suave
-  MF: "#FFD93D", // Amarillo cálido
-  FW: "#FF6B6B", // Rojo-anaranjado
+  GK: "#4BCFFA",
+  DF: "#8C54CC",
+  MF: "#FFD93D",
+  FW: "#FF6B6B",
 };
 
 const POSITION_LABELS = {
@@ -36,7 +36,6 @@ export function TeamStats({ players }: { players: Player[] }) {
 
   const total = players.length;
 
-  // Calcular ángulos para el gráfico circular
   let currentAngle = 0;
   const segments = Object.entries(stats)
     .filter(([_, count]) => count > 0)
@@ -55,7 +54,6 @@ export function TeamStats({ players }: { players: Player[] }) {
       };
     });
 
-  // Crear el gradiente cónico para el gráfico
   const conicGradient = segments
     .map((seg) => {
       const color = POSITION_COLORS[seg.position];
@@ -103,9 +101,7 @@ export function TeamStats({ players }: { players: Player[] }) {
       </div>
 
       {total === 0 && (
-        <p className="team-stats__empty">
-          Añade jugadores para ver las estadísticas
-        </p>
+        <p className="team-stats__empty">Add players to see the statistics</p>
       )}
     </div>
   );
