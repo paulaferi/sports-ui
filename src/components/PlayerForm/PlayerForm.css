@@ -1,14 +1,15 @@
 .player-form {
-  border: 1px solid #e5e5e5;
+  border: 1px solid #8c54cc;
   border-radius: 10px;
   padding: 1rem;
-  background: #fff;
+  background: #ffffff;
   max-width: 520px;
 }
 
 .player-form__title {
   margin: 0 0 0.75rem;
   font-weight: 600;
+  color: #2e1a8c;
 }
 
 .player-form__row {
@@ -20,7 +21,7 @@
 }
 
 .player-form__label {
-  color: #374151;
+  color: #2e1a8c;
 }
 
 .player-form__input,
@@ -29,14 +30,15 @@
   max-width: 100%;
   box-sizing: border-box;
   padding: 0.5rem 0.6rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #8c54cc;
   border-radius: 8px;
   outline: none;
+  background: #ffffff;
 }
 
 .team-details__sidebar {
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  border: 1px solid #8c54cc;
   border-radius: 8px;
   padding: 1rem;
   overflow-x: hidden;
@@ -45,8 +47,8 @@
 
 .player-form__input:focus,
 .player-form__select:focus {
-  border-color: #0a66c2;
-  box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.15);
+  border-color: #7f3fff;
+  box-shadow: 0 0 0 3px rgba(127, 63, 255, 0.2);
 }
 
 .player-form__actions {
@@ -55,22 +57,29 @@
 }
 
 .player-form__submit {
-  background: #0a66c2;
-  color: #fff;
+  background: #5426cc;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   padding: 0.5rem 0.85rem;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .player-form__submit:hover {
-  background: #084f96;
+  background: #7f3fff;
+}
+
+.player-form__submit:disabled {
+  background: #8c54cc;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .player-form__error {
-  background: #fee2e2;
-  border: 1px solid #fecaca;
-  color: #7f1d1d;
+  background: #ffe8e8;
+  border: 1px solid #ff6b6b;
+  color: #1a1a1a;
   padding: 0.5rem 0.75rem;
   border-radius: 8px;
   margin-bottom: 0.75rem;

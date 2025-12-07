@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { PlayerPosition, Player } from "../../types";
+import type { PlayerPosition } from "../../types";
 import "./PlayerForm.css";
 
 type PlayerFormValues = {

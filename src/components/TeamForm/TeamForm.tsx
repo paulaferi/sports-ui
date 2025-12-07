@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { Team } from "../../types";
 import "./TeamForm.css";
 
 type TeamFormValues = {

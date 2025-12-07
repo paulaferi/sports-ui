@@ -1,6 +1,6 @@
 .team-details {
   display: grid;
-  grid-template-columns: 1fr 28%; /* contenido principal + sidebar */
+  grid-template-columns: 1fr 28%;
   gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -9,7 +9,7 @@
 }
 
 .team-details__main {
-  background: #f9fafb;
+  background: #f8f5ff;
   border-radius: 8px;
   padding: 1rem;
   position: relative;
@@ -17,11 +17,15 @@
 }
 
 .team-details__sidebar {
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  border: 1px solid #8c54cc;
   border-radius: 8px;
   padding: 1rem;
-  position: relative;
+  position: sticky;
+  top: 60px;
+  align-self: start;
   z-index: 0;
   overflow-x: hidden;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
 }
