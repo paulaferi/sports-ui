@@ -39,6 +39,7 @@
 .team-list__item {
   padding: 0;
   transition: transform 0.2s ease;
+  position: relative;
 }
 
 .team-list__link {
@@ -55,6 +56,7 @@
   box-shadow: 0 2px 4px rgba(84, 38, 204, 0.08);
   position: relative;
   overflow: hidden;
+  min-height: 80px;
 }
 
 .team-list__link::before {
@@ -120,6 +122,9 @@
   font-size: 1.5rem;
   transition: all 0.3s ease;
   opacity: 0.6;
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
 }
 
 .team-list__link:hover .team-list__arrow {
@@ -157,6 +162,7 @@
 
   .team-list__link {
     padding: 1rem;
+    min-height: 70px;
   }
 
   .team-list__name {
@@ -165,6 +171,20 @@
 
   .team-list__city {
     font-size: 0.8rem;
+  }
+
+  .team-list__delete {
+    top: 0.5rem;
+    right: 0.75rem;
+    width: 28px;
+    height: 28px;
+    font-size: 1.5rem;
+  }
+
+  .team-list__arrow {
+    bottom: 0.75rem;
+    right: 1rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -208,3 +228,45 @@
 .team-list__item:nth-child(8) {
   animation-delay: 0.4s;
 }
+
+/* Botón eliminar equipo */
+.team-list__delete {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  transform: scale(0.8);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #ff6b6b;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 0.85;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+}
+
+.team-list__item:hover .team-list__delete {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.team-list__delete:hover {
+  background: #ff4444;
+  transform: scale(1.2);
+  box-shadow: 0 4px 16px rgba(255, 68, 68, 0.6);
+}
+
+.team-list__delete:active {
+  transform: scale(1);
+}
+
+/* Ya no necesitamos ajustar el padding del link */

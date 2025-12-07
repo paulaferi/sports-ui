@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import type { Team } from "../../types";
-import { getTeams, createTeam } from "../../api/teams";
+import { getTeams, createTeam, deleteTeam } from "../../api/teams";
 import "./TeamList.css";
 import { TeamForm } from "../../components/TeamForm/TeamForm";
 
@@ -35,6 +35,24 @@ export function TeamList() {
     }
   }
 
+  async function handleDeleteTeam(teamId: string | number, teamName: string) {
+    if (
+      !window.confirm(
+        `¿Estás seguro de eliminar el equipo "${teamName}"? Esto también eliminará todos sus jugadores.`,
+      )
+    ) {
+      return;
+    }
+
+    try {
+      await deleteTeam(teamId);
+      setTeams((prev) => prev.filter((t) => t.id !== teamId));
+    } catch (error) {
+      console.error("Error deleting team:", error);
+      alert("No se pudo eliminar el equipo. Inténtalo de nuevo.");
+    }
+  }
+
   if (loading) return <p>Loading teams...</p>;
   if (error) return <p role="alert">{error}</p>;
 
@@ -57,6 +75,18 @@ export function TeamList() {
                   </div>
                   <span className="team-list__arrow">→</span>
                 </Link>
+                <button
+                  className="team-list__delete"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleDeleteTeam(t.id, t.name);
+                  }}
+                  aria-label={`Eliminar equipo ${t.name}`}
+                  title="Eliminar equipo"
+                >
+                  ×
+                </button>
               </li>
             ))}
           </ul>
