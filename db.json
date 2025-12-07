@@ -19,6 +19,11 @@
       "id": "7d2b",
       "name": "Test",
       "city": "Test"
+    },
+    {
+      "id": "b4c0",
+      "name": "Test 2",
+      "city": "Test"
     }
   ],
   "players": [
@@ -98,6 +103,13 @@
       "name": "Test",
       "position": "MF",
       "number": 3
+    },
+    {
+      "id": "f1d3",
+      "teamId": "b4c0",
+      "name": "Test",
+      "position": "DF",
+      "number": 1
     }
   ]
 }
