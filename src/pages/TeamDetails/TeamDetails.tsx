@@ -8,8 +8,8 @@ import { PlayerForm } from "../../components/PlayerForm/PlayerForm";
 import "./TeamDetails.css";
 
 export function TeamDetails() {
-  const { id } = useParams();
-  const teamId = id;
+  const { id } = useParams(); // id string
+  const teamId = id!; // confía en la ruta /team/:id
 
   const [team, setTeam] = useState<Team | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
@@ -17,21 +17,17 @@ export function TeamDetails() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!Number.isFinite(teamId)) {
-      setError("Invalid team id");
-      setLoading(false);
-      return;
-    }
-
+    let mounted = true;
     setLoading(true);
     setError(null);
 
     (async () => {
       try {
         const teamData = await getTeamById(teamId);
+        if (!mounted) return;
         setTeam(teamData);
       } catch {
-        // Si el equipo no existe, muestra error y corta
+        if (!mounted) return;
         setError("Team not found");
         setTeam(null);
         setLoading(false);
@@ -40,15 +36,20 @@ export function TeamDetails() {
 
       try {
         const playersData = await getPlayersByTeam(teamId);
+        if (!mounted) return;
         setPlayers(playersData);
-        document.title = `${team!.name} — ${playersData.length} players`;
+        document.title = `${teamData.name} — ${playersData.length} players`;
       } catch {
-        // No bloquees la vista si falla la carga de jugadores
+        if (!mounted) return;
         setPlayers([]);
       } finally {
-        setLoading(false);
+        if (mounted) setLoading(false);
       }
     })();
+
+    return () => {
+      mounted = false;
+    };
   }, [teamId]);
 
   async function handleAddPlayer(values: {
@@ -60,13 +61,12 @@ export function TeamDetails() {
       const created = await createPlayer({
         teamId,
         name: values.name.trim(),
-        position: values.position, // asegúrate de usar el mismo tipo que la API (abreviaturas o nombres)
+        position: values.position,
         number: values.number,
       });
       setPlayers((prev) => [...prev, created]);
     } catch {
-      // Podrías mostrar un aviso local en el sidebar, pero no bloquees toda la página
-      console.error("Failed to create player");
+      console.warn("Failed to create player");
     }
   }
 

@@ -1,15 +1,15 @@
 export type PlayerPosition = "GK" | "DF" | "MF" | "FW";
 
 export interface Player {
-  id: number;
+  id: string | number;
   name: string;
   position: PlayerPosition;
   number: number;
-  teamId?: number; // opcional en UI local, requerido en API al crear con json-server
+  teamId?: string | number; // opcional en UI local, requerido en API al crear con json-server
 }
 
 export interface Team {
-  id: number;
+  id: string | number;
   name: string;
   city: string;
   // UI local (fase estática):
