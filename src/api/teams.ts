@@ -6,7 +6,7 @@ export async function getTeams(): Promise<Team[]> {
   return data;
 }
 
-export async function getTeamById(id: number): Promise<Team> {
+export async function getTeamById(id: string | number): Promise<Team> {
   const { data } = await http.get<Team>(`/teams/${id}`);
   return data;
 }

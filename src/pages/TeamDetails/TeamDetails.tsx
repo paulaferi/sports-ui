@@ -9,7 +9,7 @@ import "./TeamDetails.css";
 
 export function TeamDetails() {
   const { id } = useParams();
-  const teamId = Number(id);
+  const teamId = id;
 
   const [team, setTeam] = useState<Team | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
@@ -17,17 +17,34 @@ export function TeamDetails() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!Number.isFinite(teamId)) {
+      setError("Invalid team id");
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
     (async () => {
       try {
-        const [teamData, playersData] = await Promise.all([
-          getTeamById(teamId),
-          getPlayersByTeam(teamId),
-        ]);
+        const teamData = await getTeamById(teamId);
         setTeam(teamData);
-        setPlayers(playersData);
-        document.title = `${teamData.name} — ${playersData.length} players`;
       } catch {
-        setError("Failed to load team details");
+        // Si el equipo no existe, muestra error y corta
+        setError("Team not found");
+        setTeam(null);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const playersData = await getPlayersByTeam(teamId);
+        setPlayers(playersData);
+        document.title = `${team!.name} — ${playersData.length} players`;
+      } catch {
+        // No bloquees la vista si falla la carga de jugadores
+        setPlayers([]);
       } finally {
         setLoading(false);
       }
@@ -43,30 +60,35 @@ export function TeamDetails() {
       const created = await createPlayer({
         teamId,
         name: values.name.trim(),
-        position: values.position,
+        position: values.position, // asegúrate de usar el mismo tipo que la API (abreviaturas o nombres)
         number: values.number,
       });
       setPlayers((prev) => [...prev, created]);
     } catch {
-      setError("Failed to create player");
+      // Podrías mostrar un aviso local en el sidebar, pero no bloquees toda la página
+      console.error("Failed to create player");
     }
   }
 
   if (loading) return <p>Loading team...</p>;
-  if (error) return <p role="alert">{error}</p>;
-  if (!team) return <p>Team not found.</p>;
 
   return (
     <section className="team-details">
-      <div className="team-details__main">
-        <Body team={team} players={players} />
-      </div>
-      <aside className="team-details__sidebar">
-        <PlayerForm
-          onSubmit={handleAddPlayer}
-          defaultNumber={players.length + 1}
-        />
-      </aside>
+      {team ? (
+        <>
+          <div className="team-details__main">
+            <Body team={team} players={players} />
+          </div>
+          <aside className="team-details__sidebar">
+            <PlayerForm
+              onSubmit={handleAddPlayer}
+              defaultNumber={players.length + 1}
+            />
+          </aside>
+        </>
+      ) : (
+        <p>Team not found.</p>
+      )}
     </section>
   );
 }
