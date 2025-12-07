@@ -1,20 +1,14 @@
 export type PlayerPosition = "GK" | "DF" | "MF" | "FW";
 
-export interface Player {
-  id: string | number;
-  name: string;
-  position: PlayerPosition;
-  number: number;
-  teamId?: string | number; // opcional en UI local, requerido en API al crear con json-server
-}
+export type Team = { id: string | number; name: string; city: string };
 
-export interface Team {
+export type Player = {
   id: string | number;
+  teamId: string | number;
   name: string;
-  city: string;
-  // UI local (fase estática):
-  players?: Player[]; // opcional: en REST se cargan por separado
-}
+  position: "GK" | "DF" | "MF" | "FW";
+  number: number;
+};
 
 export const MIN_PLAYERS = 11;
 

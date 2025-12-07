@@ -8,8 +8,8 @@ import { PlayerForm } from "../../components/PlayerForm/PlayerForm";
 import "./TeamDetails.css";
 
 export function TeamDetails() {
-  const { id } = useParams(); // id string
-  const teamId = id!; // confía en la ruta /team/:id
+  const { id } = useParams();
+  const teamId = id!;
 
   const [team, setTeam] = useState<Team | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
@@ -59,7 +59,7 @@ export function TeamDetails() {
   }) {
     try {
       const created = await createPlayer({
-        teamId: teamId,
+        teamId,
         name: values.name.trim(),
         position: values.position,
         number: values.number,
