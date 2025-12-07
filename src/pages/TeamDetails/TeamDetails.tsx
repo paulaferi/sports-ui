@@ -9,6 +9,7 @@ import {
 } from "../../api/players";
 import { Body } from "../../components/Body/Body";
 import { PlayerForm } from "../../components/PlayerForm/PlayerForm";
+import { TeamStats } from "../../components/TeamStats/TeamStats";
 import "./TeamDetails.css";
 
 export function TeamDetails() {
@@ -92,6 +93,7 @@ export function TeamDetails() {
               onSubmit={handleAddPlayer}
               defaultNumber={players.length + 1}
             />
+            <TeamStats players={players} />
           </aside>
         </>
       ) : (

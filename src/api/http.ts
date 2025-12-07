@@ -11,7 +11,6 @@ export const http = axios.create({
 http.interceptors.response.use(
   (res) => res,
   (error) => {
-    // Puedes centralizar toasts, logs o mapping de mensajes aquí
     return Promise.reject(error);
   },
 );
